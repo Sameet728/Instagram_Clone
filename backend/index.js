@@ -27,12 +27,6 @@ app.use(cors(corsOptions));
 
 
 
-app.get("/", (req, res) => {
-  return res.status(200).json({
-    message: "coming from backend form /",
-    success: true,
-  })
-})
 
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/post",postRoute);
@@ -41,6 +35,14 @@ app.use("/api/v1/message",messageRoute);
 app.use(express.static(path.join(__dirname, "/frontend/vite-project/dist")));
 app.get("*", (req,res)=>{
     res.sendFile(path.resolve(__dirname, "frontend","vite-project", "dist", "index.html"));
+})
+
+
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "coming from backend form /",
+    success: true,
+  })
 })
 
 app.listen(PORT, () => {
